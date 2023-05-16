@@ -2,9 +2,12 @@
 <p>Task manager</p>
 <p>This is an application for managing a to do list.</p>
 
-<a href="/tasks/index">Task 1</a><br />
-<%= link_to("Task 2", "/tasks/index")%><br />
-<%= link_to("Task 3", {controller: "tasks", action: "index"})%><br />
+<%= link_to("Categories", categories_path) %><br />
+<%= link_to("Tasks link_to", tasks_path(page: 1)) %><br />
+
+<a href="/tasks/index">Tasks a</a><br />
+<%= link_to("Tasks route", "/tasks/index")%><br />
+<%= link_to("Tasks {}", {controller: "tasks", action: "index"})%><br />
 
 <%= link_to("Task page 1", {controller: "tasks", action: "index", page: 1})%><br />
 <%= link_to("About", {action: "about", page: 5, id: 20})%><br />

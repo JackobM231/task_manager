@@ -1,4 +1,5 @@
 class AccessController < ApplicationController
+  skip_before_action :confirm_logged_in, only: [:new, :create]
 
   # display menu
   def menu
@@ -32,5 +33,4 @@ class AccessController < ApplicationController
     flash[:notice] = "Logged out."
     redirect_to(login_path)
   end
-
 end

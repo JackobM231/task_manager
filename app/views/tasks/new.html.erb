@@ -3,7 +3,7 @@
 <div class="tasks new">
   <h2>Create Task</h2>
 
-  <%= form_for(@task) do |f| %>
+   <%= form_for(@task) do |f| %>
     <% # url: tasks_path, method: 'post' %>
 
       <%= render(partial: "form", locals: {f: f}) %>

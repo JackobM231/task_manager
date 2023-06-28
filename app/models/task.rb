@@ -3,6 +3,9 @@ class Task < ApplicationRecord
   attr_accessor :skip_titleize_name
 
   belongs_to :category, optional: true
+  has_and_belongs_to_many :tags
+  has_many :task_assignments
+  has_many :users, through: :task_assignments
 
   validates_presence_of :name
   validates_length_of :name, maximum: 50
@@ -18,6 +21,8 @@ class Task < ApplicationRecord
   before_update :log_update
   after_save :log_save
   after_commit :cleaning_reminder, if: :too_many_records?
+
+  after_destroy :log_destroy ###
 
   scope :complete, -> { where(completed: true) }
   scope :incomplete, -> { where(completed: false) }
@@ -51,6 +56,10 @@ class Task < ApplicationRecord
 
     def log_update
       logger.debug("Task being updated: #{name}")
+    end
+
+    def log_destroy ###
+      logger.debug("Task being destroyed: #{name}")
     end
 
     def log_save
